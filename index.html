@@ -104,14 +104,13 @@
     </div>
 
     <script>
-        const emotions = ["亢奋", "低落", "开心", "失望", "愤怒", "无聊"];
+        const emotions = ["恐惧焦虑", "贪婪自信", "压力愤怒", "兴奋决心", "失望满足"];
         const emotionColors = {
-            "亢奋": "linear-gradient(145deg, #FFD700, #FFA500)",
-            "低落": "linear-gradient(145deg, #4169E1, #1E90FF)",
-            "开心": "linear-gradient(145deg, #32CD32, #90EE90)",
-            "失望": "linear-gradient(145deg, #808080, #A9A9A9)",
-            "愤怒": "linear-gradient(145deg, #FF0000, #FF4500)",
-            "无聊": "linear-gradient(145deg, #FFFFFF, #F0F0F0)"
+            "恐惧焦虑": "linear-gradient(145deg, #4682B4, #1E90FF)",//蓝色
+            "贪婪自信": "linear-gradient(145deg, #FFD700, #FFA500)",//黄色
+            "压力愤怒": "linear-gradient(145deg, #DC143C, #B22222)",//红色
+            "兴奋决心": "linear-gradient(145deg, #FFA500, #FF8C00)",//橙色
+            "失望满足": "linear-gradient(145deg, #3CB371, #2E8B57)"//绿色
         };
         let selectedEmotion = null;
 
@@ -173,12 +172,11 @@
 
         function startBreathingLight(emotion) {
             const colors = {
-                "亢奋": "#FFD700", // 黄色
-                "低落": "#4169E1", // 蓝色
-                "开心": "#32CD32", // 绿色
-                "失望": "#808080", // 灰色
-                "愤怒": "#FF0000", // 红色
-                "无聊": "#FFFFFF"  // 白色
+                "恐惧焦虑": "#4682B4",
+                "贪婪自信": "#FFD700",
+                "压力愤怒": "#DC143C",
+                "兴奋决心": "#FFA500",
+                "失望满足": "#3CB371"
             };
 
             const light = document.getElementById("breathing-light");
