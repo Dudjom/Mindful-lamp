@@ -23,20 +23,25 @@
         }
         #emotion-buttons {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 80vw;
+            height: 80vw;
+            max-width: 500px;
+            max-height: 500px;
             margin: 20px auto;
         }
         .emotion-btn {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 25vw;
+            height: 25vw;
+            max-width: 150px;
+            max-height: 150px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             font-weight: bold;
+            font-size: 4.5vw;
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
@@ -86,17 +91,29 @@
             width: 100%;
         }
         #selected-emotions {
+            font-size: 4vw;
             margin: 20px 0;
+        }
+        @media (min-width: 768px) {
+            #selected-emotions {
+                font-size: 20px;
+            }
+        }
+        h1 {
+            font-size: 6vw;
+            margin: 20px;
+        }
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 <body>
     <div id="first-page">
         <h1>请选择您当下的情绪</h1>
-        <div id="emotion-buttons">
-            <button id="next-btn" onclick="nextPage()">下一步</button>
-        </div>
-        <div id="selected-emotions"></div>
+        <div id="emotion-buttons"></div>
     </div>
     <div id="second-page" style="display:none;">
         <h1>请跟随灯光缓慢调整呼吸</h1>
@@ -116,9 +133,9 @@
 
         function initEmotionButtons() {
             const container = document.getElementById("emotion-buttons");
-            const radius = 120; // 圆的半径
-            const centerX = 150;
-            const centerY = 150;
+            const radius = container.offsetWidth * 0.35;
+            const centerX = container.offsetWidth / 2;
+            const centerY = container.offsetHeight / 2;
 
             emotions.forEach((emotion, index) => {
                 const angle = (index * 2 * Math.PI / emotions.length) - Math.PI/2;
@@ -129,45 +146,18 @@
                 btn.className = "emotion-btn";
                 btn.textContent = emotion;
                 btn.style.background = emotionColors[emotion];
-                btn.style.left = `${x - 40}px`;  // 40是按钮宽度的一半
-                btn.style.top = `${y - 40}px`;   // 40是按钮高度的一半
+                btn.style.left = `${x - (btn.offsetWidth/2)}px`;
+                btn.style.top = `${y - (btn.offsetHeight/2)}px`;
                 btn.addEventListener('click', () => selectEmotion(emotion));
                 container.appendChild(btn);
             });
         }
 
         function selectEmotion(emotion) {
-            // 移除所有按钮的选中状态
-            document.querySelectorAll('.emotion-btn').forEach(btn => {
-                btn.classList.remove("selected");
-            });
-            
-            // 如果点击的是已选中的情绪，则取消选择
-            if (selectedEmotion === emotion) {
-                selectedEmotion = null;
-            } else {
-                // 否则选择新的情绪
-                selectedEmotion = emotion;
-                const btn = Array.from(document.querySelectorAll('.emotion-btn'))
-                    .find(b => b.textContent === emotion);
-                btn.classList.add("selected");
-            }
-            updateSelectedEmotions();
-        }
-
-        function updateSelectedEmotions() {
-            const display = document.getElementById("selected-emotions");
-            display.innerText = selectedEmotion ? `已选择情绪: ${selectedEmotion}` : "未选择情绪";
-        }
-
-        function nextPage() {
-            if (selectedEmotion) {
-                document.getElementById("first-page").style.display = "none";
-                document.getElementById("second-page").style.display = "block";
-                startBreathingLight(selectedEmotion);
-            } else {
-                alert("请选择一个情绪！");
-            }
+            selectedEmotion = emotion;
+            document.getElementById("first-page").style.display = "none";
+            document.getElementById("second-page").style.display = "block";
+            startBreathingLight(emotion);
         }
 
         function startBreathingLight(emotion) {
