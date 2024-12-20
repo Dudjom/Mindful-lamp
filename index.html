@@ -19,6 +19,13 @@
     <meta name="twitter:title" content="交易情绪助手 - 专业的交易心理调节工具">
     <meta name="twitter:description" content="帮助交易者识别和调节自己的情绪状态，提供呼吸引导，改善交易心理">
     <!-- <meta name="twitter:image" content="[你的图片URL]"> -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    
     
     <title>交易情绪助手 - 专业的交易心理调节工具</title>
     <style>
@@ -134,6 +141,23 @@
                 font-size: 36px;
             }
         }
+        @media (min-width: 1024px) {
+            .emotion-btn {
+                font-size: 24px;
+            }
+            #emotion-buttons {
+                width: 60vw;
+                height: 60vw;
+            }
+        }
+        @media (max-width: 480px) {
+            .emotion-btn {
+                font-size: 16px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -203,7 +227,7 @@
             let opacity = 0;
             let increasing = true;
 
-            setInterval(() => {
+            let intervalId = setInterval(() => {
                 if (increasing) {
                     opacity += 0.03;
                     if (opacity >= 1) increasing = false;
@@ -213,6 +237,14 @@
                 }
                 light.style.opacity = opacity;
             }, 100);
+            
+            window.breathingIntervalId = intervalId;
+        }
+
+        function cleanupBreathingLight() {
+            if (window.breathingIntervalId) {
+                clearInterval(window.breathingIntervalId);
+            }
         }
 
         window.onload = initEmotionButtons;
