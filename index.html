@@ -2,7 +2,25 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>交易情绪助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="交易情绪管理工具 - 帮助交易者识别和调节自己的情绪状态，提供呼吸引导，改善交易心理">
+    <meta name="keywords" content="正念,冥想,交易心理,情绪管理,交易情绪,呼吸训练,交易者心理,情绪调节,交易工具">
+    <meta name="author" content="Mindful Lamp">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="交易情绪助手 - 专业的交易心理调节工具">
+    <meta property="og:description" content="帮助交易者识别和调节自己的情绪状态，提供呼吸引导，改善交易心理">
+    <!-- <meta property="og:image" content="[你的图片URL]"> -->
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="交易情绪助手 - 专业的交易心理调节工具">
+    <meta name="twitter:description" content="帮助交易者识别和调节自己的情绪状态，提供呼吸引导，改善交易心理">
+    <!-- <meta name="twitter:image" content="[你的图片URL]"> -->
+    
+    <title>交易情绪助手 - 专业的交易心理调节工具</title>
     <style>
         body {
             margin: 0;
@@ -42,15 +60,9 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 5vw;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             padding: 10px;
             box-sizing: border-box;
-            text-align: center;
-            line-height: 1.2;
         }
         .emotion-btn:hover {
             transform: scale(1.1);
@@ -158,7 +170,6 @@
 
                 const btn = document.createElement("div");
                 btn.className = "emotion-btn";
-                btn.textContent = emotion;
                 btn.style.background = emotionColors[emotion];
                 setTimeout(() => {
                     btn.style.left = `${x - btn.offsetWidth/2}px`;
